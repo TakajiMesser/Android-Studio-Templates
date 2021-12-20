@@ -1,6 +1,7 @@
 package com.github.takajimesser.androidstudiotemplates.templates.builders
 
-import com.github.takajimesser.androidstudiotemplates.templates.*
+import com.github.takajimesser.androidstudiotemplates.models.templates.TemplateFile
+import com.github.takajimesser.androidstudiotemplates.models.templates.TemplateFileType
 
 class NetworkingBuilder {
     companion object {
@@ -59,26 +60,33 @@ class NetworkingBuilder {
             import retrofit2.Callback
             import retrofit2.Response
             
-            class ResponseCall<T>(private val call: Call<T>) : Call<ApiResponse<T>> {
+            class ResponseCall<T>(private val backingCall: Call<T>) : Call<ApiResponse<T>> {
                 override fun enqueue(callback: Callback<ApiResponse<T>>) {
-                    call.enqueue(ResponseCallback<T>(this, callback))
+                    backingCall.enqueue(object : Callback<T> {
+                        override fun onResponse(call: Call<T>, response: Response<T>) {
+                            callback.onResponse(this@ResponseCall, Response.success(ApiResponse.create(response)))
+                        }
+            
+                        override fun onFailure(call: Call<T>, t: Throwable) {
+                            callback.onResponse(this@ResponseCall, Response.success(ApiResponse.create(t)))
+                        }
+                    })
                 }
-            
-                override fun isExecuted() = call.isExecuted
-            
-                override fun clone() = ResponseCall(call.clone())
-            
-                override fun isCanceled() = call.isCanceled
-            
-                override fun cancel() = call.cancel()
-            
-                override fun execute(): Response<ApiResponse<T>> {
+                
+                override fun execute(): Response<ApiResponse<T>> =
                     throw UnsupportedOperationException("Synchronous execution is unsupported")
-                }
             
-                override fun request(): Request = call.request()
+                override fun isExecuted() = backingCall.isExecuted
             
-                override fun timeout(): Timeout = call.timeout()
+                override fun clone() = ResponseCall(backingCall.clone())
+            
+                override fun isCanceled() = backingCall.isCanceled
+            
+                override fun cancel() = backingCall.cancel()
+            
+                override fun request(): Request = backingCall.request()
+            
+                override fun timeout(): Timeout = backingCall.timeout()
             }
         
         """.trimIndent())

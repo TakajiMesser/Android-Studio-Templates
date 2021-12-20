@@ -1,6 +1,7 @@
 package com.github.takajimesser.androidstudiotemplates.templates.builders
 
-import com.github.takajimesser.androidstudiotemplates.templates.*
+import com.github.takajimesser.androidstudiotemplates.models.templates.TemplateFile
+import com.github.takajimesser.androidstudiotemplates.models.templates.TemplateFileType
 
 class ActivityBuilder {
     companion object {
@@ -60,7 +61,7 @@ class ActivityBuilder {
         
         """.trimIndent())
 
-        fun getActivityLayoutFile() = TemplateFile("layouts_main", "", TemplateFileType.XML, """
+        fun getActivityLayoutFile() = TemplateFile("activity_main", "layout", TemplateFileType.XML, """
             <?xml version="1.0" encoding="utf-8"?>
             <fragment
                 xmlns:android="http://schemas.android.com/apk/res/android"

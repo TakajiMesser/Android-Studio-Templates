@@ -1,7 +1,7 @@
 package com.github.takajimesser.androidstudiotemplates.templates.builders
 
-import com.github.takajimesser.androidstudiotemplates.templates.TemplateFile
-import com.github.takajimesser.androidstudiotemplates.templates.TemplateFileType
+import com.github.takajimesser.androidstudiotemplates.models.templates.TemplateFile
+import com.github.takajimesser.androidstudiotemplates.models.templates.TemplateFileType
 
 class ViewModelBuilder {
     companion object {

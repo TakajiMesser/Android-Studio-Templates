@@ -1,7 +1,7 @@
 package com.github.takajimesser.androidstudiotemplates.templates.builders
 
-import com.github.takajimesser.androidstudiotemplates.templates.TemplateFile
-import com.github.takajimesser.androidstudiotemplates.templates.TemplateFileType
+import com.github.takajimesser.androidstudiotemplates.models.templates.TemplateFile
+import com.github.takajimesser.androidstudiotemplates.models.templates.TemplateFileType
 
 class UtilBuilder {
     companion object {
@@ -66,7 +66,7 @@ class UtilBuilder {
                     val packageInfo = packageManager.getPackageInfo(packageName, 0)
             
                     if (packageInfo != null) {
-                        return "v$\{packageInfo.versionName}"
+                        return "v${"$"}{packageInfo.versionName}"
                     }
                 }
             

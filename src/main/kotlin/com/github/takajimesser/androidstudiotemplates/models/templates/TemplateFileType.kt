@@ -1,4 +1,4 @@
-package com.github.takajimesser.androidstudiotemplates.templates
+package com.github.takajimesser.androidstudiotemplates.models.templates
 
 import com.intellij.lang.Language
 import com.intellij.lang.xml.XMLLanguage

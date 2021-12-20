@@ -1,7 +1,8 @@
 package com.github.takajimesser.androidstudiotemplates.templates.builders
 
 import com.android.tools.idea.wizard.template.fragmentToLayout
-import com.github.takajimesser.androidstudiotemplates.templates.*
+import com.github.takajimesser.androidstudiotemplates.models.templates.TemplateFile
+import com.github.takajimesser.androidstudiotemplates.models.templates.TemplateFileType
 
 class FragmentBuilder {
     companion object {
@@ -70,7 +71,7 @@ class FragmentBuilder {
     
         """.trimIndent())
 
-        fun getFragmentLayoutFile(fragmentName: String) = TemplateFile(fragmentToLayout(fragmentName), "layouts", TemplateFileType.XML, """
+        fun getFragmentLayoutFile(fragmentName: String) = TemplateFile(fragmentToLayout(fragmentName), "layout", TemplateFileType.XML, """
             <?xml version="1.0" encoding="utf-8"?>
             <androidx.constraintlayout.widget.ConstraintLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"

@@ -1,4 +1,4 @@
-package com.github.takajimesser.androidstudiotemplates.templates
+package com.github.takajimesser.androidstudiotemplates.models.templates
 
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiFile
